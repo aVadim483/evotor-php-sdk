@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +11,7 @@ class OperationTest extends TestCase
     /** @var Operation */
     private $operation;
 
-    /** @var Kily\API\Evotor\Client | PHPUnit_Framework_MockObject_MockObject */
+    /** @var avadim\Evotor\Client | PHPUnit_Framework_MockObject_MockObject */
     private $client;
 
     /** @var string */
@@ -20,12 +20,12 @@ class OperationTest extends TestCase
     /** @var array */
     private $arguments;
 
-    /** @var Kily\API\Evotor\Operations\Operation | PHPUnit_Framework_MockObject_MockObject */
+    /** @var avadim\Evotor\Operations\Operation | PHPUnit_Framework_MockObject_MockObject */
     private $op;
 
     protected function setUp(): void
     {
-        $this->client = $this->createMock(\Kily\API\Evotor\Client::class);
+        $this->client = $this->createMock(\avadim\Evotor\Client::class);
         $this->name = '';
         $this->arguments = [];
         $this->op = null;

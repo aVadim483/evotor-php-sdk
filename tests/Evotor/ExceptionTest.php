@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor;
+namespace avadim\Evotor;
 
 use PHPUnit\Framework\TestCase;
 
@@ -18,6 +18,6 @@ class ExceptionTest extends TestCase
 
     public function testMissing()
     {
-        $this->assertTrue($this->exception instanceof \Kily\API\Evotor\Exception);
+        $this->assertTrue($this->exception instanceof \avadim\Evotor\Exception);
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
 use PHPUnit\Framework\TestCase;
 

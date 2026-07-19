@@ -1,10 +1,10 @@
 <?php
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Client;
-use Kily\API\Evotor\Exception;
-use Kily\API\Evotor\Operations\OperationFactory;
+use avadim\Evotor\Client;
+use avadim\Evotor\Exception;
+use avadim\Evotor\Operations\OperationFactory;
 
 class DeviceOperation extends Operation
 {
@@ -14,7 +14,7 @@ class DeviceOperation extends Operation
     protected $allowed_methods = ['get'];
     protected $id = null;
 
-    public function run(Operation $prev = null)
+    public function run(?Operation $prev = null)
     {
         return $this;
     }
@@ -40,7 +40,7 @@ class DeviceOperation extends Operation
         } else {
             $this->id = $id;
             if ($id) {
-                $this->path = str_replace(['{store_id}','{device_id}'], [$this->prev_operation->id(),$id], self::PATH);
+                $this->path = str_replace(['{store_id}','{device_id}'], [(string)$this->prev_operation->id(), (string)$id], self::PATH);
             }
         }
     }

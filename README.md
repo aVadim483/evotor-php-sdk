@@ -4,6 +4,11 @@
 
 ВНИМАНИЕ! Данный клиент является неофициальным, поддержка не гарантируется!
 
+Требования
+------------
+
+PHP 7.4 — 8.5, расширение `ext-json`.
+
 Установка
 ------------
 
@@ -11,7 +16,7 @@
 [Composer](http://getcomposer.org):
 
 ```
-$ composer require kilylabs/evotor-php-sdk
+$ composer require avadim/evotor-php-sdk
 ```
 
 Использование
@@ -28,7 +33,7 @@ $ composer require kilylabs/evotor-php-sdk
 
 require 'vendor/autoload.php';
 
-$client = new Kily\API\Evotor\Client('<API_KEY>','<APP_KEY>',[
+$client = new avadim\Evotor\Client('<API_KEY>','<APP_KEY>',[
     'debug'=>true, // Только для тестирования
 ]);
 
@@ -347,10 +352,20 @@ var_dump($bulk);
 
 #### Некоторые полезные методы
 ```php
-// Итерация и маппинг результатов (используется библиотека https://github.com/DusanKasan/Knapsack)
+// Итерация и маппинг результатов
+// Любой метод, не объявленный в Response, проксируется в avadim\Evotor\Collection
 $list = $client->stores($store_id)->products()->get()->map(function($item){
     return $item['id'];
 })->toArray();
+
+// Доступны: map, filter, reject, each, reduce, pluck, keyBy, sort, reverse,
+// values, keys, slice, take, first, last, contains, isEmpty, count, toArray.
+// Collection реализует IteratorAggregate и Countable:
+foreach ($client->stores($store_id)->products()->get()->filter(function($item){
+    return $item['price'] > 100;
+}) as $product) {
+    var_dump($product);
+}
 
 // Получить количество оставшихся запросов (X-Rate-Limit-Remaining)
 $data = $list = $client->stores($store_id)->products()->get();

@@ -1,10 +1,10 @@
 <?php
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Client;
-use Kily\API\Evotor\Exception;
-use Kily\API\Evotor\Request;
+use avadim\Evotor\Client;
+use avadim\Evotor\Exception;
+use avadim\Evotor\Request;
 
 class Operation implements OperationInterface
 {
@@ -21,7 +21,7 @@ class Operation implements OperationInterface
     protected $prev_operation = null;
     protected $is_bulk = false;
 
-    public function __construct(Client $client, string $name, array $arguments, Operation $op = null)
+    public function __construct(Client $client, string $name, array $arguments, ?Operation $op = null)
     {
         $this->client = $client;
         $this->name = $name;
@@ -34,7 +34,7 @@ class Operation implements OperationInterface
     {
     }
 
-    public function run(Operation $prev = null)
+    public function run(?Operation $prev = null)
     {
         throw new Exception('This should be overriden');
     }

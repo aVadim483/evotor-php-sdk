@@ -1,13 +1,13 @@
 <?php
 
-namespace Kily\API\Evotor;
+namespace avadim\Evotor;
 
 use Psr\Http\Message\RequestInterface;
 
 class Request
 {
     protected $response;
-    protected $clnt;
+    protected $client;
 
     private $arr;
 

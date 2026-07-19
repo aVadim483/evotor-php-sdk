@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor;
+namespace avadim\Evotor;
 
-use Kily\API\Evotor\Operations\Operation;
+use avadim\Evotor\Operations\Operation;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase

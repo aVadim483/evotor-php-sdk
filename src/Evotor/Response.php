@@ -1,14 +1,13 @@
 <?php
 
-namespace Kily\API\Evotor;
+namespace avadim\Evotor;
 
 use Psr\Http\Message\ResponseInterface;
-use DusanKasan\Knapsack\Collection;
 
 class Response
 {
     protected $response;
-    protected $clnt;
+    protected $client;
     protected $filter;
 
     private $arr;
@@ -33,7 +32,7 @@ class Response
     public function toArray()
     {
         if (!$this->arr) {
-            $data = json_decode($this->response->getBody(), true);
+            $data = json_decode((string)$this->response->getBody(), true);
             $this->arr = $data['items'] ?? $data;
         }
         /*
@@ -57,8 +56,18 @@ class Response
         return $this->toArray()[0] ?? null;
     }
 
+    /**
+     * Проксирует вызовы в Collection, построенную из данных ответа
+     *
+     * @throws Exception
+     */
     public function __call($name, $arguments)
     {
-        return call_user_func_array([Collection::from($this->toArray() ?: []),$name], $arguments);
+        $collection = Collection::from($this->toArray() ?: []);
+        if (!method_exists($collection, $name)) {
+            throw new Exception('Unknown method '.$name.'() of '.Collection::class);
+        }
+
+        return call_user_func_array([$collection, $name], $arguments);
     }
 }

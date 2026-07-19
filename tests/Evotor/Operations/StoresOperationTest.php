@@ -2,20 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Exception;
-use Kily\API\Evotor\Operations\ProductsOperations;
+use avadim\Evotor\Exception;
+use avadim\Evotor\Operations\ProductsOperations;
 use PHPUnit\Framework\TestCase;
 
 class StoresOperationTest extends TestCase
 {
+    /** @var \avadim\Evotor\Client|\PHPUnit\Framework\MockObject\MockObject */
+    private $clnt;
+
     /** @var StoresOperation */
     private $storesOperation;
 
     protected function setUp(): void
     {
-        $this->clnt = $this->createMock(\Kily\API\Evotor\Client::class);
+        $this->clnt = $this->createMock(\avadim\Evotor\Client::class);
         $this->storesOperation = new StoresOperation(
             $this->clnt,
             'stores',

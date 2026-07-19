@@ -1,12 +1,12 @@
 <?php
 
-namespace Kily\API\Evotor;
+namespace avadim\Evotor;
 
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Client as Guzzle;
-use Kily\API\Evotor\Operations\OperationFactory;
+use avadim\Evotor\Operations\OperationFactory;
 
 class Client
 {

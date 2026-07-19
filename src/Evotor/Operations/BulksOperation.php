@@ -1,8 +1,8 @@
 <?php
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Client;
+use avadim\Evotor\Client;
 
 class BulksOperation extends Operation
 {
@@ -13,7 +13,7 @@ class BulksOperation extends Operation
 
     protected $id;
 
-    public function run(Operation $prev = null)
+    public function run(?Operation $prev = null)
     {
         return $this;
     }

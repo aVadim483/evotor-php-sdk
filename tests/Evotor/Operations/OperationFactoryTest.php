@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Operations\OperationFactory;
-use Kily\API\Evotor\Exception;
-use Kily\API\Evotor\Operations\Operation;
+use avadim\Evotor\Operations\OperationFactory;
+use avadim\Evotor\Exception;
+use avadim\Evotor\Operations\Operation;
 use PHPUnit\Framework\TestCase;
 
 class OperationFactoryTest extends TestCase
@@ -16,7 +16,7 @@ class OperationFactoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->clnt = $this->createMock(\Kily\API\Evotor\Client::class);
+        $this->clnt = $this->createMock(\avadim\Evotor\Client::class);
     }
 
     public function testFromNameBad()
