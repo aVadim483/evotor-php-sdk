@@ -2,24 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Exception;
+use avadim\Evotor\Exception;
 use PHPUnit\Framework\TestCase;
 
 class GroupsOperationTest extends TestCase
 {
+    /** @var \avadim\Evotor\Client|\PHPUnit\Framework\MockObject\MockObject */
+    private $clnt;
+
     /** @var GroupsOperation */
     private $groupsOperation;
 
     protected function setUp(): void
     {
-        $this->clnt = $this->createMock(\Kily\API\Evotor\Client::class);
+        $this->clnt = $this->createMock(\avadim\Evotor\Client::class);
         $this->groupsOperation = new GroupsOperation(
             $this->clnt,
             'groups',
             [],
-            $this->createMock(\Kily\API\Evotor\Operations\StoresOperation::class)
+            $this->createMock(\avadim\Evotor\Operations\StoresOperation::class)
         );
     }
 
@@ -47,7 +50,7 @@ class GroupsOperationTest extends TestCase
             $this->clnt,
             'groups',
             [],
-            $this->createMock(\Kily\API\Evotor\Operations\Operation::class)
+            $this->createMock(\avadim\Evotor\Operations\Operation::class)
         );
         $this->groupsOperation->run();
     }

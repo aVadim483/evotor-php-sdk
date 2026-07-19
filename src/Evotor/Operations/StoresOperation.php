@@ -1,9 +1,9 @@
 <?php
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Client;
-use Kily\API\Evotor\Exception;
+use avadim\Evotor\Client;
+use avadim\Evotor\Exception;
 
 class StoresOperation extends Operation
 {
@@ -13,7 +13,7 @@ class StoresOperation extends Operation
     protected $allowed_methods = ['get'];
     protected $id = null;
 
-    public function run(Operation $prev = null)
+    public function run(?Operation $prev = null)
     {
         return $this;
     }

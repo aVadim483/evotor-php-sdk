@@ -1,9 +1,9 @@
 <?php
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Client;
-use Kily\API\Evotor\Exception;
+use avadim\Evotor\Client;
+use avadim\Evotor\Exception;
 
 class GroupsOperation extends Operation
 {
@@ -13,7 +13,7 @@ class GroupsOperation extends Operation
     protected $allowed_methods = ['get','put','post','delete'];
     protected $id = null;
 
-    public function run(Operation $prev = null)
+    public function run(?Operation $prev = null)
     {
         return $this;
     }
@@ -42,12 +42,12 @@ class GroupsOperation extends Operation
             }
             if ($id) {
                 if (is_array($id)) {
-                    $this->path = str_replace('{store_id}', $this->prev_operation->id(), self::PATH).'?'.http_build_query($id);
+                    $this->path = str_replace('{store_id}', (string)$this->prev_operation->id(), self::PATH).'?'.http_build_query($id);
                 } else {
-                    $this->path = str_replace('{store_id}', $this->prev_operation->id(), self::PATH).'/'.$id;
+                    $this->path = str_replace('{store_id}', (string)$this->prev_operation->id(), self::PATH).'/'.$id;
                 }
             } else {
-                $this->path = str_replace('{store_id}', $this->prev_operation->id(), self::PATH);
+                $this->path = str_replace('{store_id}', (string)$this->prev_operation->id(), self::PATH);
             }
         }
     }

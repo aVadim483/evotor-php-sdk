@@ -5,24 +5,29 @@ on: [push, pull_request]
 jobs:
   phpunit:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+    name: PHP ${{ matrix.php-version }}
     steps:
-      - name: Setup PHP with gd and imagick
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php-version }}
           #extensions: dom
 
       - name: Checking out repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Add HTTP basic auth credentials
         run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
 
       - name: Installing composer with deps
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v3"
 
       - name: Running PHPUNIT
-        run: ./vendor/bin/phpunit 
+        run: ./vendor/bin/phpunit
 
       - name: Remove auth.json file
         run: rm -f $GITHUB_WORKSPACE/auth.json

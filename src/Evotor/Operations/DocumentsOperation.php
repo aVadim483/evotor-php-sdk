@@ -1,9 +1,9 @@
 <?php
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Client;
-use Kily\API\Evotor\Exception;
+use avadim\Evotor\Client;
+use avadim\Evotor\Exception;
 
 class DocumentsOperation extends Operation
 {
@@ -13,7 +13,7 @@ class DocumentsOperation extends Operation
     protected $allowed_methods = ['get','post'];
     protected $id = null;
 
-    public function run(Operation $prev = null)
+    public function run(?Operation $prev = null)
     {
         return $this;
     }
@@ -22,7 +22,7 @@ class DocumentsOperation extends Operation
     {
         if ($this->prev_operation) {
             if ($this->prev_operation instanceof StoresOperation) {
-                $this->path = str_replace('{store_id}', $this->prev_operation->id(), self::PATH);
+                $this->path = str_replace('{store_id}', (string)$this->prev_operation->id(), self::PATH);
             } elseif ($this->prev_operation instanceof DeviceOperation) {
                 $this->path = $this->prev_operation->getPath().'/documents';
             }
@@ -41,9 +41,9 @@ class DocumentsOperation extends Operation
             }
             $this->id = $id;
             if ($id) {
-                $this->path = str_replace('{store_id}', $this->prev_operation->id(), self::PATH).'/'.$id;
+                $this->path = str_replace('{store_id}', (string)$this->prev_operation->id(), self::PATH).'/'.$id;
             } else {
-                $this->path = str_replace('{store_id}', $this->prev_operation->id(), self::PATH);
+                $this->path = str_replace('{store_id}', (string)$this->prev_operation->id(), self::PATH);
             }
         }
     }

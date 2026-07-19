@@ -1,8 +1,8 @@
 <?php
 
-namespace Kily\API\Evotor\Operations;
+namespace avadim\Evotor\Operations;
 
-use Kily\API\Evotor\Client;
+use avadim\Evotor\Client;
 
 interface OperationInterface
 {

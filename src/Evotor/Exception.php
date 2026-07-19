@@ -1,6 +1,6 @@
 <?php
 
-namespace Kily\API\Evotor;
+namespace avadim\Evotor;
 
 class Exception extends \Exception
 {

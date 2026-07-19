@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor;
+namespace avadim\Evotor;
 
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +11,7 @@ class ResponseTest extends TestCase
     /** @var Response */
     private $response;
 
-    /** @var Kily\API\Evotor\Client | PHPUnit_Framework_MockObject_MockObject */
+    /** @var avadim\Evotor\Client | PHPUnit_Framework_MockObject_MockObject */
     private $clnt;
 
     /** @var Psr\Http\Message\ResponseInterface | PHPUnit_Framework_MockObject_MockObject */
@@ -32,7 +32,7 @@ class ResponseTest extends TestCase
             ->method('getBody')
             ->will($this->returnValue($streamStub));
 
-        $this->clnt = $this->createMock(\Kily\API\Evotor\Client::class);
+        $this->clnt = $this->createMock(\avadim\Evotor\Client::class);
         $this->resp = $stub;
 
         $this->filter = null;
@@ -57,5 +57,19 @@ class ResponseTest extends TestCase
     public function testFirst()
     {
         $this->assertTrue(($this->response->first()) == ['id'=>'123']);
+    }
+
+    public function testCollectionProxy()
+    {
+        $ids = $this->response->map(function ($item) {
+            return $item['id'];
+        })->toArray();
+        $this->assertSame(['123', '321'], $ids);
+    }
+
+    public function testUnknownCollectionMethod()
+    {
+        $this->expectException(Exception::class);
+        $this->response->_nonexistent_();
     }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Kily\API\Evotor;
+namespace avadim\Evotor;
 
-use Kily\API\Evotor\Request;
+use avadim\Evotor\Request;
 use PHPUnit\Framework\TestCase;
 
 class RequestTest extends TestCase
@@ -12,7 +12,7 @@ class RequestTest extends TestCase
     /** @var Request */
     private $request;
 
-    /** @var Kily\API\Evotor\Client | PHPUnit_Framework_MockObject_MockObject */
+    /** @var avadim\Evotor\Client | PHPUnit_Framework_MockObject_MockObject */
     private $client;
 
     /** @var string */
@@ -23,7 +23,7 @@ class RequestTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->client = $this->createMock(\Kily\API\Evotor\Client::class);
+        $this->client = $this->createMock(\avadim\Evotor\Client::class);
         $this->name = 'post';
         $this->arguments = [];
         $this->request = new Request(
